@@ -1,0 +1,968 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>من نحن - مزاد ليالي نجد للخيل العربية الأصيلة</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4a5568;
+            --primary-dark: #2d3748;
+            --secondary: #718096;
+            --secondary-dark: #4a5568;
+            --light: #e2e8f0;
+            --white: #ffffff;
+            --dark: #1a202c;
+            --accent: #a0aec0;
+            --gray-light: #f7fafc;
+            --gray-medium: #edf2f7;
+            --gray-border: #cbd5e0;
+            --text-primary: #2d3748;
+            --text-secondary: #4a5568;
+            --text-light: #718096;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Tajawal', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--gray-light) 0%, var(--gray-medium) 100%);
+            min-height: 100vh;
+            color: var(--text-primary);
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* Header Styles */
+        .header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--gray-border);
+            box-shadow: 0 5px 30px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .header.scrolled {
+            padding: 15px 0;
+            background: rgba(255, 255, 255, 0.98);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.5em;
+            font-weight: 700;
+            color: var(--primary-dark);
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            color: var(--white);
+            box-shadow: 0 5px 20px rgba(74, 85, 104, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .logo:hover .logo-icon {
+            box-shadow: 0 8px 25px rgba(74, 85, 104, 0.6);
+        }
+
+        .nav-container {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 10px;
+            align-items: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-menu a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            padding: 10px 20px;
+            border-radius: 8px;
+            position: relative;
+            white-space: nowrap;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after, .nav-menu a.active::after {
+            width: 100%;
+        }
+
+        .nav-menu a:hover, .nav-menu a.active {
+            color: var(--primary);
+            background: rgba(74, 85, 104, 0.1);
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: var(--white);
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(74, 85, 104, 0.3);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            white-space: nowrap;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(74, 85, 104, 0.5);
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--primary-dark);
+            font-size: 1.8em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-menu-toggle:hover {
+            color: var(--primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            max-width: 1400px;
+            margin: 60px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 3.2em;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+            position: relative;
+            display: inline-block;
+            color: var(--text-primary);
+        }
+
+        .hero-content h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            right: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+
+        .hero-content p {
+            font-size: 1.2em;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            line-height: 1.7;
+        }
+
+        .hero-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            transform: perspective(1000px) rotateY(-5deg);
+            transition: all 0.5s ease;
+        }
+
+        .hero-image:hover {
+            transform: perspective(1000px) rotateY(0deg);
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .hero-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(74, 85, 104, 0.2) 0%, transparent 100%);
+            z-index: 1;
+        }
+
+        /* Mission Section */
+        .mission-section {
+            max-width: 1400px;
+            margin: 80px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .mission-image {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .mission-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .mission-content h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: var(--text-primary);
+        }
+
+        .mission-content p {
+            font-size: 1.1em;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        /* Features Section */
+        .features-section {
+            max-width: 1400px;
+            margin: 80px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 60px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
+            color: var(--text-primary);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            right: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            padding: 40px;
+            border-radius: 20px;
+            border: 1px solid var(--gray-border);
+            transition: all 0.4s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(74, 85, 104, 0.1) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(74, 85, 104, 0.15);
+        }
+
+        .feature-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5em;
+            color: var(--white);
+            margin: 0 auto 20px;
+            box-shadow: 0 5px 20px rgba(74, 85, 104, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .feature-card h3 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .feature-card p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Values Section */
+        .values-section {
+            max-width: 1400px;
+            margin: 80px auto;
+            padding: 60px 20px;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            border: 1px solid var(--gray-border);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .values-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(74, 85, 104, 0.1) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .value-item {
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .value-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(74, 85, 104, 0.1) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .value-item:hover::before {
+            opacity: 1;
+        }
+
+        .value-item:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: scale(1.05);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .value-item h4 {
+            color: var(--text-primary);
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+
+        .value-item p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+     
+        /* CTA Section */
+        .cta-section {
+            max-width: 1400px;
+            margin: 80px auto;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, rgba(74, 85, 104, 0.2) 0%, rgba(255, 255, 255, 0.8) 100%);
+            border-radius: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(74, 85, 104, 0.1) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        .cta-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: var(--text-primary);
+        }
+
+        .cta-section p {
+            font-size: 1.2em;
+            color: var(--text-secondary);
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.7;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-dark);
+            margin-top: 100px;
+            padding: 60px 20px 30px;
+            border-top: 1px solid var(--gray-border);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(160, 174, 192, 0.1) 0%, transparent 70%);
+            z-index: 0;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-section h3 {
+            color: var(--light);
+            margin-bottom: 20px;
+            font-size: 1.3em;
+        }
+
+        .footer-section p {
+            color: var(--light);
+            line-height: 1.8;
+        }
+
+        .footer-section a {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--light);
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: var(--light);
+            color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--accent);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 999;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(255, 255, 255, 0.98);
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .hero, .mission-section {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero-content h1 {
+                font-size: 2.2em;
+            }
+
+            .section-title {
+                font-size: 2em;
+            }
+
+            .features-grid, .values-grid, .team-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .back-to-top {
+                bottom: 20px;
+                left: 20px;
+            }
+            
+            .nav-container {
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header" id="header">
+        <div class="header-container">
+            <a href="#" class="logo">
+                <div class="logo-icon"><img src="logo2.jpg" width="60px" height="60px"></div>
+                <span>مزاد ليالي نجد للخيلالعربية الاصيلة</span>
+            </a>
+            
+            <div class="nav-container">
+                <nav>
+                    <ul class="nav-menu" id="navMenu">
+                        <li><a href="main.html">الرئيسية</a></li>
+                        <li><a href="index.html">شروط المزاد</a></li>
+                        <li><a href="about.html" class="active">من نحن</a></li>
+                    </ul>
+                </nav>
+
+                <a href="https://chat.whatsapp.com/FToKkqpwU8C4hPyRKZbVkX" target="_blank" class="cta-button">
+                    <i class="fas fa-gavel"></i>
+                    الدخول للمزاد
+                </a>
+            </div>
+            
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>عن مزاد ليالي نجد للخيل العربية الأصيلة</h1>
+            <p>في مزاد ليالي نجد للخيل العربية الأصيلة، نؤمن أن الخيل العربي الأصيل ليس مجرد حيوان، بل تاريخ حيّ، وأصالة تمتد عبر الأجيال، واستثمار يحمل قيمة وجمالًا لا يقدّر بثمن. جاءت فكرتنا لنكون الوسيط الأمين بين البائع والمشتري، حيث يجتمع الشغف بالثقة، وتتحول الرغبة إلى صفقة ناجحة.</p>
+            <a href="https://chat.whatsapp.com/FToKkqpwU8C4hPyRKZbVkX" class="cta-button">
+                <i class="fas fa-user-plus"></i>
+                انضم إلى المزاد
+            </a>
+        </div>
+        <div class="hero-image">
+            <img src="freed4.jpg" alt="خيل عربي أصيل">
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission-section">
+    
+        <div class="mission-image">
+            <img src="freed5.jpg" alt="فريق مزاد ليالي نجد">
+        </div>
+
+        <div class="mission-content">
+            <h2>رسالتنا</h2>
+            <p>تسهيل عملية بيع وشراء الخيول العربية الأصيلة بطريقة عصرية، احترافية، وآمنة، بعيدًا عن العشوائية الموجودة في بعض الأسواق الأخرى.</p>
+            <p>نحن لا نكتفي بعرض الخيول، بل نحرص على أن تكون تجربتك معنا مختلفة: واضحة، سهلة، وتركز على ما يهمك فقط.</p>
+            <p>نهدف إلى بناء مجتمع من محبي الخيل العربي يجمع بين الأصالة والحداثة، حيث يلتقي الهواة والمحترفون في بيئة موثوقة وشغوفة.</p>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <h2 class="section-title">لماذا نحن مختلفون؟</h2>
+        
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <h3>شغف بالأصالة</h3>
+                <p>كل خيل معروض لدينا يتميز بجودة وسلالة معروفة، ونحرص على تقديم أفضل السلالات العربية الأصيلة التي تحافظ على نقاء الأصالة والجمال.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <h3>ثقة وأمان</h3>
+                <p>خطوات واضحة تحمي حقوق البائع والمشتري، مع ضمانات كاملة للتعاملات وآليات دفع آمنة تضمن راحة بال جميع الأطراف.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <h3>وصول أوسع</h3>
+                <p>نفتح لك أبواب السوق المحلي والعالمي، مع قاعدة عريضة من المشترين والبائعين من مختلف أنحاء العالم العربي.</p>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">
+                    <i class="fas fa-headset"></i>
+                </div>
+                <h3>دعم متخصص</h3>
+                <p>فريق دعم فني متخصص في الخيل العربية الأصيلة، يقدم الاستشارات والنصائح المهنية لضتمام أفضل الصفقات.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Values Section -->
+    <section class="values-section">
+        <h2 class="section-title">قيمنا</h2>
+        
+        <div class="values-grid">
+            <div class="value-item">
+                <i class="fas fa-handshake fa-2x" style="color: var(--primary); margin-bottom: 15px;"></i>
+                <h4>الأمانة</h4>
+                <p>نلتزم بأعلى معايير الشفافية والنزاهة في جميع تعاملاتنا.</p>
+            </div>
+            
+            <div class="value-item">
+                <i class="fas fa-users fa-2x" style="color: var(--primary); margin-bottom: 15px;"></i>
+                <h4>المجتمع</h4>
+                <p>نبني علاقات قوية مع عملائنا ونعمل على تنمية مجتمع محبي الخيل.</p>
+            </div>
+            
+            <div class="value-item">
+                <i class="fas fa-gem fa-2x" style="color: var(--primary); margin-bottom: 15px;"></i>
+                <h4>الجودة</h4>
+                <p>نحرص على تقديم أفضل الخيول وأجود السلالات العربية الأصيلة.</p>
+            </div>
+            
+            <div class="value-item">
+                <i class="fas fa-rocket fa-2x" style="color: var(--primary); margin-bottom: 15px;"></i>
+                <h4>التطوير</h4>
+                <p>نسعى دائمًا لتحسين خدماتنا وتطوير تجربة المستخدم بشكل مستمر.</p>
+            </div>
+        </div>
+    </section>
+
+   
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2>انضم إلى مجتمعنا</h2>
+        <p>سواء كنت تبحث عن فرس عربي أصيل يزين مربطك، أو ترغب في بيع خيلك بثقة وسهولة، مزاد ليالي نجد للخيل العربية الأصيلة هو خيارك الأول.</p>
+        <a href="https://chat.whatsapp.com/FToKkqpwU8C4hPyRKZbVkX" target="_blank" class="cta-button">
+            <i class="fas fa-comments"></i>
+            تواصل معنا الآن
+        </a>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>من نحن</h3>
+                <p>في مزاد ليالي نجد للخيل العربية الأصيلة، نؤمن أن الخيل العربي ليس مجرد سلعة، بل قيمة وتاريخ وسلالة لا تقدر بثمن. لذلك صممنا مزادنا لنكون الجسر الحقيقي بين البائع والمشتري، بعيدًا عن الفوضى والتكرار.</p>
+                <div class="social-links">
+                    <a href="https://chat.whatsapp.com/FToKkqpwU8C4hPyRKZbVkX" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                    <a href="https://www.instagram.com/auction.najd" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h3>تواصل معنا</h3>
+                <p><i class="fas fa-phone"></i> 0555662798</p>
+                <p><i class="fas fa-envelope"></i> auction.najd@gmail.com</p>
+                <p><i class="fas fa-map-marker-alt"></i> جدة، المملكة العربية السعودية</p>
+            </div>
+            <div class="footer-section">
+                <h3>روابط سريعة</h3>
+                <p><a href="main.html">الرئيسية</a></p>
+                <p><a href="index.html">شروط المزاد</a></p>
+                <p><a href="about.html">من نحن</a></p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>جميع الحقوق محفوظة © 2025 مؤسسة مزاد ليالي نجد للخيل العربية الأصيلة للتسويق</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+        const navMenu = document.getElementById('navMenu');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    
+                    // Close mobile menu if open
+                    navMenu.classList.remove('active');
+                }
+            });
+        });
+
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Back to top button
+        const backToTop = document.getElementById('backToTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Intersection Observer for Animation
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .value-item, .team-member').forEach(element => {
+            element.style.opacity = '0';
+            element.style.transform = 'translateY(30px)';
+            element.style.transition = 'all 0.6s ease';
+            observer.observe(element);
+        });
+
+        // Active navigation link highlighting
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-menu a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
